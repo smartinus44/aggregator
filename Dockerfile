@@ -8,7 +8,9 @@ ENV HOME /usr/share/nginx/html
 
 RUN PRODUCTS=$(curl demo/products) && \
     ASSETS=$(curl demo/assets) && \
-    echo "{products: $PRODUCTS, assets: $ASSETS}" >  ${HOME}/index.html && \
-    cat ${HOME}/index.html
+    LEVELS=$(curl demo/levels) && \
+    STAGES=$(curl demo/stages) && \
+    echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  $HOME/index.html && \
+    cat $HOME/index.html
 
 USER 1001
