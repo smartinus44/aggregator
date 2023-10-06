@@ -4,8 +4,11 @@ MAINTAINER Sylvain Martin
 
 WORKDIR /
 
+ENV HOME /usr/share/nginx/html
+
 RUN PRODUCTS=$(curl demo/products) && \
     ASSETS=$(curl demo/assets) && \
-    ls -alRh
+    echo "{products: $PRODUCTS, assets: $ASSETS}" >  ${HOME}/index.html && \
+    cat ${HOME}/index.html
 
 USER 1001
