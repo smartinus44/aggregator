@@ -6,7 +6,6 @@ WORKDIR /
 
 RUN PRODUCTS=$(curl demo/products) && \
     ASSETS=$(curl demo/assets) && \
-    echo "{products: $PRODUCTS, assets: $ASSETS}" >  /var/www/html/index.html && \
-    cat /var/www/html/index.html
+    ls -alRh
 
 USER 1001
