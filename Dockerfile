@@ -16,3 +16,7 @@ RUN PRODUCTS=$(curl demo/products) && \
     cat $HOME/index.html
 
 USER 1001
+
+
+# Run script uses standard ways to run the application
+CMD nginx -g "daemon off;"
