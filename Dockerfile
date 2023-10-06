@@ -6,6 +6,8 @@ WORKDIR /
 
 ENV HOME /usr/share/nginx/html
 
+USER 0
+
 RUN PRODUCTS=$(curl demo/products) && \
     ASSETS=$(curl demo/assets) && \
     LEVELS=$(curl demo/levels) && \
