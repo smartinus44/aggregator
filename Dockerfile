@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.8-1072
+FROM registry.access.redhat.com/ubi8/nginx-120
 
 MAINTAINER Sylvain Martin
 
@@ -6,6 +6,7 @@ WORKDIR /
 
 RUN PRODUCTS=$(curl demo/products) && \
     ASSETS=$(curl demo/assets) && \
-    echo "{products: $PRODUCTS, assets: $ASSETS}" > /tmp/data.json
+    echo "{products: $PRODUCTS, assets: $ASSETS}" > /wwwdata/html/index.html && \
+    ls -lZ cat /wwwdata/html/index.html
 
-USER 1000
+USER 1001
