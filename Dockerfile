@@ -10,7 +10,8 @@ MAINTAINER Sylvain Martin
 
 WORKDIR /
 
-ENv SVC consenstest-git:8080
+ENV SVC consenstest-git:8080
+ENV HOME /usr/share/testpage
 
 USER 0
 
@@ -18,10 +19,10 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     ASSETS=$(curl $SVC/assets) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
-    echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${NGINX_APP_ROOT}/index.html && \
-    chmod -R 0755 ${NGINX_APP_ROOT} && \
-    chown -R 1001:0 ${NGINX_APP_ROOT} && \
-    ls -alRh ${NGINX_APP_ROOT}
+    echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${HOME}/index.html && \
+    chmod -R 0755 ${HOME} && \
+    chown -R 1001:0 ${HOME} && \
+    ls -alRh ${HOME}
 
 USER 1001
 
