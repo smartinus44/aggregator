@@ -15,7 +15,10 @@ ENV HOME /tmp/src
 
 USER 0
 
-RUN PRODUCTS=$(curl $SVC/products) && \
+
+
+RUN mkdir ${HOME} && \
+    PRODUCTS=$(curl $SVC/products) && \
     ASSETS=$(curl $SVC/assets) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
