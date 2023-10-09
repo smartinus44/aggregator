@@ -20,7 +20,7 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${HOME}/index.html && \
-    chmod -R 0755 ${HOME} && chmod -R 0755 ${NGINX_APP_ROOT}/src && \
+    chmod -R g=u ${HOME} && chmod -R g=u ${NGINX_APP_ROOT}/src && \
     chown -R 1001:0 ${HOME} && chown -R 1001:0 ${NGINX_APP_ROOT}/src && \
     ls -alRh ${HOME}
 
