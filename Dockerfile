@@ -14,7 +14,9 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  $HOME/index.html && \
-    cat $HOME/index.html
+    cat $HOME/index.html && \
+    chgrp -R 0 $HOME && \
+    chmod -R g=u $HOME
 
 USER 1001
 
