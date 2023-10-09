@@ -5,13 +5,14 @@ MAINTAINER Sylvain Martin
 WORKDIR /
 
 ENV HOME /usr/share/nginx/html
+ENv SVC_NAME consenstest-git
 
 USER 0
 
-RUN PRODUCTS=$(curl demo/products) && \
-    ASSETS=$(curl demo/assets) && \
-    LEVELS=$(curl demo/levels) && \
-    STAGES=$(curl demo/stages) && \
+RUN PRODUCTS=$(curl $SVC_NAME/products) && \
+    ASSETS=$(curl $SVC_NAME/assets) && \
+    LEVELS=$(curl $SVC_NAME/levels) && \
+    STAGES=$(curl $SVC_NAME/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  $HOME/index.html && \
     cat $HOME/index.html
 
