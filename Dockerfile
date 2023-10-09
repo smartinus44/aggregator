@@ -2,7 +2,6 @@ FROM registry.access.redhat.com/ubi8/nginx-120
 
 MAINTAINER Sylvain Martin
 
-WORKDIR /
 
 
 
@@ -12,6 +11,7 @@ ADD test-app/nginx-default-cfg/*.conf "${NGINX_DEFAULT_CONF_PATH}"
 ADD test-app/nginx-cfg/*.conf "${NGINX_CONFIGURATION_PATH}"
 ADD test-app/*.html .
 
+# WORKDIR /
 # ENV HOME /usr/share/testpage
 # ENv SVC consenstest-git:8080
 
