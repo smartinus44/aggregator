@@ -4,7 +4,7 @@ MAINTAINER Sylvain Martin
 
 WORKDIR /
 
-ENV HOME /usr/share/nginx/html
+ENV HOME /usr/share/testpage
 ENv SVC consenstest-git:8080
 
 USER 0
