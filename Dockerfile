@@ -1,4 +1,4 @@
-FROM registry.redhat.io/rhscl/nginx-120-rhel7:1-65
+FROM registry.access.redhat.com/ubi8/nginx-120
 
 MAINTAINER Sylvain Martin
 
