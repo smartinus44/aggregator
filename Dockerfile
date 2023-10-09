@@ -11,7 +11,7 @@ MAINTAINER Sylvain Martin
 WORKDIR /
 
 ENV SVC consenstest-git:8080
-ENV HOME /usr/share/testpage
+ENV HOME /tmp/src
 
 USER 0
 
@@ -20,12 +20,12 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${HOME}/index.html && \
-    chmod -R g=u ${HOME} && chmod -R g=u ${NGINX_APP_ROOT}/src && \
-    chown -R nginx:nginx ${HOME} && chown -R nginx:nginx ${NGINX_APP_ROOT}/src && \
-    ls -alRh ${HOME}
+    chown -R 1001:0 /tmp/src
 
 USER 1001
 
+# Let the assemble script to install the dependencies
+RUN /usr/libexec/s2i/assemble
 
 # Run script uses standard ways to run the application
 CMD nginx -g "daemon off;"
