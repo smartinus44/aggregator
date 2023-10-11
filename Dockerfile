@@ -1,34 +1,21 @@
 FROM registry.access.redhat.com/ubi8/nginx-120
 
-MAINTAINER Sylvain Martin
-
-# Add application sources
-# ADD test-app/nginx.conf "${NGINX_CONF_PATH}"
-# ADD test-app/nginx-default-cfg/*.conf "${NGINX_DEFAULT_CONF_PATH}"
-# ADD test-app/nginx-cfg/*.conf "${NGINX_CONFIGURATION_PATH}"
-# ADD test-app/*.html .
-
-WORKDIR /
+MAINTAINER Sylvain Martin <symartin@redhat.com>
 
 ENV SVC consenstest-git:8080
-ENV HOME /tmp/src
+ENV HOME /usr/share/nginx/html
 
 USER 0
 
-
-
-RUN mkdir ${HOME} && \
-    PRODUCTS=$(curl $SVC/products) && \
+RUN PRODUCTS=$(curl $SVC/products) && \
     ASSETS=$(curl $SVC/assets) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${HOME}/index.html && \
-    chown -R 1001:0 /tmp/src
+    chgrp -R 0 /var/log/httpd /var/run/httpd && \
+    chmod -R g=u /var/log/httpd /var/run/httpd
 
 USER 1001
-
-# Let the assemble script to install the dependencies
-RUN /usr/libexec/s2i/assemble
 
 # Run script uses standard ways to run the application
 CMD nginx -g "daemon off;"
