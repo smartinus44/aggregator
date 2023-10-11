@@ -12,8 +12,8 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
     echo "{products: $PRODUCTS, assets: $ASSETS, levels: $LEVELS, stages: $STAGES}" >  ${HOME}/index.html && \
-    chgrp -R 0 /var/log/httpd /var/run/httpd && \
-    chmod -R g=u /var/log/httpd /var/run/httpd
+    chgrp -R 0 /var/log/nginx /var/run/nginx && \
+    chmod -R g=u /var/log/nginx /var/run/nginx
 
 USER 1001
 
