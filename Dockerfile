@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/ubi8/nginx-120
 
 MAINTAINER Sylvain Martin <symartin@redhat.com>
 
-ENV SVC consenstest-git:8080
+ENV SVC backend:8080
 ENV HOME /opt/app-root/src
 
 USER 0
