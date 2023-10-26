@@ -11,7 +11,7 @@ RUN PRODUCTS=$(curl $SVC/products) && \
     ASSETS=$(curl $SVC/assets) && \
     LEVELS=$(curl $SVC/levels) && \
     STAGES=$(curl $SVC/stages) && \
-    echo '{"products": $PRODUCTS, "assets": $ASSETS, "levels": $LEVELS, "stages": $STAGES}' >  ${HOME}/index.html && \
+    echo "{\"products\": $PRODUCTS, \"assets\": $ASSETS, \"levels\": $LEVELS, \"stages\": $STAGES}" >  ${HOME}/index.html && \
     chgrp -R 0 ${HOME} && \
     chmod -R g=u ${HOME}
 
